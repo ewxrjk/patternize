@@ -22,6 +22,6 @@ Pick.cc Stream.cc Conf.hh HTMLExpander.hh IO.hh Parse.hh patternize.hh	\
 cgi.cc
 AM_CPPFLAGS=-DPKGCONFDIR='"$(sysconfdir)/$(PACKAGE)"' -DPKGDATADIR='"$(pkgdatadir)"'
 dist_man_MANS=patternize.1
-EXTRA_DIST=tumblr.patterns debian/changelog debian/control	\
+EXTRA_DIST=tumblr.patterns tumblr.html debian/changelog debian/control	\
 debian/copyright debian/rules scripts/dist README.cgi
 
