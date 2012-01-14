@@ -29,6 +29,8 @@ shit${group}say.${site}
 ${group}wholooklike${celebrity}.${site}
 ${group}andtheir${animals}.${site}
 ${group}in${garments}.${site}
+addictedto${group}.${site}
+addictedto${celebrity}.${site}
 
 [category group]
 goths
