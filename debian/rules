@@ -81,8 +81,33 @@ pkg-patternize: build
 	chmod -R g-ws debian/patternize
 	dpkg --build debian/patternize ..
 
+pkg-patternize-cgi: build
+	rm -rf debian/patternize-cgi
+	$(MKDIR) debian/patternize-cgi/DEBIAN
+	$(MKDIR) debian/patternize-cgi/usr/share/doc/patternize-cgi
+	$(MKDIR) debian/patternize-cgi/usr/lib/cgi-bin
+	$(INSTALL_DATA) debian/copyright \
+		debian/patternize-cgi/usr/share/doc/patternize-cgi/copyright
+	$(INSTALL_DATA) debian/changelog \
+		debian/patternize-cgi/usr/share/doc/patternize-cgi/changelog
+	$(INSTALL_DATA) README.cgi \
+		debian/patternize-cgi/usr/share/doc/patternize-cgi/README.cgi
+	$(INSTALL_PROGRAM) patternize.cgi debian/patternize-cgi/usr/lib/cgi-bin/patternize
+	strip --remove-section=.comment debian/patternize-cgi/usr/lib/cgi-bin/*
+	gzip -9f debian/patternize-cgi/usr/share/doc/patternize-cgi/changelog*
+	dpkg-shlibdeps -Tdebian/substvars.patternize-cgi \
+		debian/patternize-cgi/usr/lib/cgi-bin/*
+	cd debian/patternize-cgi && \
+		find -name DEBIAN -prune -o -type f -print \
+			| sed 's/^\.\///' \
+			| xargs md5sum > DEBIAN/md5sums
+	dpkg-gencontrol -isp -ppatternize-cgi -Pdebian/patternize-cgi -Tdebian/substvars.patternize-cgi
+	chown -R root:root debian/patternize-cgi
+	chmod -R g-ws debian/patternize-cgi
+	dpkg --build debian/patternize-cgi ..
+
 binary: binary-arch binary-indep
-binary-arch: pkg-patternize
+binary-arch: pkg-patternize pkg-patternize-cgi
 binary-indep: 
 
 clean:

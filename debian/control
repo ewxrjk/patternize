@@ -10,3 +10,11 @@ Depends: ${shlibs:Depends}
 Description: Generate random strings from a collection of patterns
  Picks random strings uniformly from a set of patterns and
  substitutions given in a configuration file.
+
+Package: patternize-cgi
+Architecture: any
+Depends: apache2 | httpd-cgi,${shlibs:Depends}
+Description: CGI to generate random strings from a collection of patterns
+ This is a web toy, running as a CGI, which picks random strings
+ uniformly from a set of patterns and substitutions given in a
+ configuration file, and displays them using a simple template.

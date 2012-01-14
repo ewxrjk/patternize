@@ -14,9 +14,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 bin_PROGRAMS=patternize
+noinst_PROGRAMS=patternize.cgi
 patternize_SOURCES=Conf.cc Directory.cc Parse.cc patternize.cc Pick.cc	\
 Stream.cc Conf.hh IO.hh Parse.hh patternize.hh
+patternize_cgi_SOURCES=Conf.cc Directory.cc HTMLExpander.cc Parse.cc	\
+Pick.cc Stream.cc Conf.hh HTMLExpander.hh IO.hh Parse.hh patternize.hh	\
+cgi.cc
+AM_CPPFLAGS=-DPKGCONFDIR='"$(sysconfdir)/$(PACKAGE)"' -DPKGDATADIR='"$(pkgdatadir)"'
 dist_man_MANS=patternize.1
 EXTRA_DIST=tumblr.patterns debian/changelog debian/control	\
-debian/copyright debian/rules scripts/dist
+debian/copyright debian/rules scripts/dist README.cgi
 

@@ -11,6 +11,7 @@ build() {
     schroot -pc${chroot} fakeroot debian/rules build binary
     cd ..
     mv ${package}_${version}_${arch}.deb products/.
+    mv patternize-cgi_${version}_${arch}.deb products/.
     rm -rf ${dir}
 }
 

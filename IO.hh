@@ -31,7 +31,13 @@ public:
   ~Stream();
 
   bool readline(std::string &line);
+  void readall(std::string &all);
   int printf(const char *format, ...);
+  void write(int c);
+  void write(const char *ptr, size_t n);
+  void write(const std::string &s,
+             std::string::size_type pos = 0,
+             std::string::size_type n = std::string::npos);
   void close();
 
 private:

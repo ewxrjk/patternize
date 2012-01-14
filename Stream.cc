@@ -42,6 +42,15 @@ bool Stream::readline(std::string &line) {
   return line.size() || c == '\n';
 }
 
+void Stream::readall(std::string &s) {
+  int c;
+  s.clear();
+  while((c = getc(fp)) != EOF)
+    s += c;
+  if(ferror(fp))
+    throw IOError("reading", name, errno);
+}
+  
 int Stream::printf(const char *format, ...) {
   va_list ap;
   va_start(ap, format);
@@ -50,6 +59,27 @@ int Stream::printf(const char *format, ...) {
   if(rc < 0)
     throw IOError("writing", name, errno);
   return rc;
+}
+
+void Stream::write(int c) {
+  if(putc(c, fp) < 0)
+    throw IOError("writing", name, errno);
+}    
+
+void Stream::write(const char *ptr, size_t n) {
+  fwrite(ptr, 1, n, fp);
+  if(ferror(fp))
+    throw IOError("writing", name, errno);
+}
+
+void Stream::write(const std::string &s,
+                   std::string::size_type pos,
+                   std::string::size_type n) {
+  if(pos >= s.size())
+    return;
+  if(n > s.size() - pos)
+    n = s.size() - pos;
+  write(s.data() + pos, n);
 }
 
 void Stream::close() {
