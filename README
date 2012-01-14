@@ -11,6 +11,9 @@ Installation
   ./configure
   make
   sudo make install
+  man patternize
+
+See 'tumblr.patterns' for an example configuration.
 
 Bug Reports
 ===========

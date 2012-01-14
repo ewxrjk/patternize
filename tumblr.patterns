@@ -1,18 +1,38 @@
 [patterns]
-${group}uptrees.tumblr.com
-${celebrity}uptrees.tumblr.com
-sad${celebrity}.tumblr.com
-fuckyeah${celebrity}.tumblr.com
-${group}onaplane.tumblr.com
-lookatmy${adjective}${garment}.tumblr.com
+${group}uptrees.${site}
+${celebrity}uptrees.${site}
+sad${celebrity}.${site}
+fuckyeah${celebrity}.${site}
+${celebrity}fuckyeah.${site}
+${celebrity}lookingatthings.${site}
+${group}fuckyeah.${site}
+${group}onaplane.${site}
+${group}withgooglyeyes.${site}
+${group}inspace.${site}
+${group}gonewild.${site}
+lookatmy${adjective}${garment}.${site}
 
 [category group]
 goths
 cats
+democrats
 republicans
 dwarves
 bloggers
 taliban
+aliens
+libdems
+tories
+feminists
+truckers
+robots
+ninjas
+catgirls
+pirates
+etsykids
+monkeys
+hipsters
+mathematicians
 
 [category celebrity]
 keanureeves
@@ -23,6 +43,26 @@ ladygaga
 katyperry
 barackobama
 hannahhart
+edballs
+alexsalmond
+michaelportillo
+jeremypaxman
+silvioberlusconi
+angelamerkel
+nicolassarkozy
+gordonbrown
+tonyblair
+billgates
+wilwheaton
+elizadushku
+kimjongill
+mittromney
+sarahpalin
+bradpitt
+hugochavez
+edmiliband
+williamhague
+nickclegg
 
 [category adjective]
 red
@@ -30,6 +70,7 @@ green
 stripy
 enormous
 tiny
+absurd
 
 [category garment]
 trousers
@@ -41,3 +82,17 @@ shirt
 mittens
 gloves
 bowtie
+
+[category site]
+tumblr.com
+blogspot.com
+
+# Inspirations include:
+#  http://kimjongillookingatthings.tumblr.com/
+#  http://omgcatsinspace.tumblr.com/
+#  http://princessesgonewild.tumblr.com/
+#  http://xmenwithgooglyeyes.tumblr.com/
+#  http://sadetsykids.tumblr.com/
+#  http://lookatmyfuckingredtrousers.blogspot.com/
+# and most of all:
+#  http://gothsuptrees.tumblr.com/
