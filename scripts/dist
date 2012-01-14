@@ -1,0 +1,31 @@
+#! /bin/bash
+set -e
+set -x
+
+build() {
+    local arch=$1
+    local chroot=$2
+
+    tar xf ${archive}
+    cd ${dir}
+    schroot -pc${chroot} fakeroot debian/rules build binary
+    cd ..
+    mv ${package}_${version}_${arch}.deb products/.
+    rm -rf ${dir}
+}
+
+make distcheck
+
+package=$(awk '/^PACKAGE_NAME =/ { print $3 }' < Makefile)
+version=$(awk '/^PACKAGE_VERSION =/ { print $3 }' < Makefile)
+dir=${package}-${version}
+archive=${package}-${version}.tar.gz
+
+rm -rf products ${dir}
+mkdir products
+cp ${archive} products/.
+man -Tutf8 -l patternize.1 | texttohtml -iT 'patternize(1)' > products/patternize.1.html
+
+build i386 lenny32
+build amd64 lenny64
+ls -l products

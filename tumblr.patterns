@@ -1,0 +1,43 @@
+[patterns]
+${group}uptrees.tumblr.com
+${celebrity}uptrees.tumblr.com
+sad${celebrity}.tumblr.com
+fuckyeah${celebrity}.tumblr.com
+${group}onaplane.tumblr.com
+lookatmy${adjective}${garment}.tumblr.com
+
+[category group]
+goths
+cats
+republicans
+dwarves
+bloggers
+taliban
+
+[category celebrity]
+keanureeves
+johnbercow
+johnmajor
+britneyspears
+ladygaga
+katyperry
+barackobama
+hannahhart
+
+[category adjective]
+red
+green
+stripy
+enormous
+tiny
+
+[category garment]
+trousers
+pants
+hat
+shoes
+sandles
+shirt
+mittens
+gloves
+bowtie

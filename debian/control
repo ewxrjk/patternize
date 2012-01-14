@@ -1,0 +1,12 @@
+Source: patternize
+Maintainer: Richard Kettlewell <rjk@terraraq.org.uk>
+Section: utils
+Priority: extra
+Standards-Version: 3.9.1.0
+
+Package: patternize
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Generate random strings from a collection of patterns
+ Picks random strings uniformly from a set of patterns and
+ substitutions given in a configuration file.

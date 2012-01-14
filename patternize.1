@@ -1,0 +1,72 @@
+.\" patternize © 2011 Richard Kettlewell
+.\"
+.\" This program is free software: you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation, either version 3 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program. If not, see <http://www.gnu.org/licenses/>.
+.TH patternize 1
+.SH NAME
+patternize \- generate random strings matching a pattern
+.SH SYNOPSIS
+\fBpatternize\fR [\fIOPTIONS\fR] \fIPATH\fR
+.SH DESCRIPTION
+\fBpatternize\fR reads configuration from \fIPATH\fR and writes a
+uniformly chosen random string matching one of the patterns found
+there to standard output.
+.SH OPTIONS
+.TP
+.B "\-n\fR, \fB--number \fICOUNT"
+The number of strings to generate.
+The default is 1.
+.TP
+.B "\-h\fR, \fB--help"
+Display a usage message.
+.TP
+.B "\-V\fR, \fB--version"
+Display a version string.
+.SH CONFIGURATION
+Configuration may either be a single file or it may be a directory.
+In the latter cases, the files in the directory are read lexical order.
+Backup files (containing \fB~\fR) and dotfiles are skipped.
+.PP
+Configuration consists of a collection of sections.
+Sections have a type and possibly a name:
+.PP
+.RS
+\fB[\fITYPE\fB]
+.br
+\fB[\fITYPE\fB \fINAME\fB]
+.RE
+.PP
+Types and names are both nonempty sequences of ASCII letters and
+digits.
+A section ends either when a new section is introduced or at the end
+of a file.
+.SS Patterns
+A \fBpatterns\fR section contains a list of pattern strings, one to
+a line.
+In a pattern string every character stands for itself except
+for \fB$\fR, which either introduces a substitution of the form
+\fB${\fICATEGORY\fB}\fR or is doubled as \fB$$\fR to represent a
+single \fB$\fR symbol.
+.PP
+Patterns sections do not have names.
+All patterns sections are concatenated together.
+.SS Categories
+A \fBcategory\fR section always has a name, which can be used
+in the substitutions referred to above.
+The section contains a list of possible substitution strings for this
+category, one to a line.
+.PP
+All the category sections with a given name are concatenated together.
+.SH LOCALIZATION
+All input files are assumed to follow the current multibyte character
+encoding.
