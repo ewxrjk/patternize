@@ -7,21 +7,35 @@ patternize
 Installation
 ============
 
-  ./autogen.sh     # only if you don't have configure already
-  ./configure
-  make
-  sudo make install
-  man patternize
+  See INSTALL for full instructions.  In brief:
 
-See 'tumblr.patterns' for an example configuration.
+    ./autogen.sh     # only if you don't have configure already
+    ./configure
+    make
+    sudo make install
+    man patternize
 
-For web (CGI) use, see README.cgi.
+  See 'tumblr.patterns' for an example configuration.
+
+  For web (CGI) use, see README.cgi.
 
 Bug Reports
 ===========
 
   Send bug reports to:
     Richard Kettlewell <rjk@terraraq.org.uk>
+
+Inspirations
+============
+
+  Inspirations include:
+    http://kimjongillookingatthings.tumblr.com/
+    http://omgcatsinspace.tumblr.com/
+    http://princessesgonewild.tumblr.com/
+    http://xmenwithgooglyeyes.tumblr.com/
+    http://sadetsykids.tumblr.com/
+    http://lookatmyfuckingredtrousers.blogspot.com/
+    http://gothsuptrees.tumblr.com/
 
 Copyright
 =========
