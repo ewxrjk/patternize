@@ -8,7 +8,7 @@ body { background-color: #f0f0f0; color: black; font-family: "Times New Roman", 
 .site { font-size: 300%;text-align:center;font-family: "Gill Sans", sans-serif }
 .after { font-size: 150%; text-align: right; font-weight: bold }
 .again { text-align: center }
-.credits { text-align: right; font-size: 75% }
+.credits { text-align: right; font-size: 75%; position: absolute; right: 1em }
 a { text-decoration: none; color: black }
 a:hover { text-decoration: underline }
 a:visited { color: black }
@@ -18,7 +18,7 @@ a:visited { color: black }
     <p class=before>Quickly, create</p>
     <p class=site>${result}</p>
     <p class=after>&hellip;before anyone else does.</p>
-    <p class=again><a href="${uri}">Make another</a>!</p>
-    <p class=credits><a href="https://github.com/ewxrjk/patternize">${package} ${version}</a></p>
+    <p class=again><a href="${uri}">Make another</a>!
+      <span class=credits><a href="https://github.com/ewxrjk/patternize">${package} ${version}</a></span></p>
   </body>
 </html>
