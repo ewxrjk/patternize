@@ -28,8 +28,30 @@ static choice_type getChoices(const Conf &c, const std::string &pattern);
 static std::string substitute(const Conf &c,
                               const std::string &pattern,
                               choice_type choice);
+std::string pickUniform(const Conf &c);
+std::string pickTwoLevel(const Conf &c);
 
 std::string pick(const Conf &c) {
+  switch(c.getDistribution()) {
+  case Conf::Uniform:
+    return pickUniform(c);
+  case Conf::TwoLevel:
+    return pickTwoLevel(c);
+  default:
+    throw std::logic_error("unknown distribution");
+  }
+}
+
+std::string pickTwoLevel(const Conf &c) {
+  double r = drand48();
+  const std::string &pattern = c.patterns[r * c.patterns.size()];
+  choice_type choices = getChoices(c, pattern);
+  r = drand48();
+  choice_type choice = r * choices;
+  return substitute(c, pattern, choice);
+}
+
+std::string pickUniform(const Conf &c) {
   // Figure out the total number of possible choices
   choice_type choices = 0;
   std::vector<std::string> subs;
@@ -46,7 +68,7 @@ std::string pick(const Conf &c) {
     else
       choice -= choices_here;
   }
-  throw std::logic_error("pick() fell off the end");
+  throw std::logic_error("pickUniform() fell off the end");
 }
 
 // ----------------------------------------------------------------------------

@@ -35,9 +35,16 @@ public:
 
   int getErrors() const { return errors; }
 
+  enum Distribution {
+    Uniform,
+    TwoLevel,
+  };
+  Distribution getDistribution() const { return distribution; }
+
 private:
   void readfile(const std::string &path);
   int errors;
+  Distribution distribution;
 
 };
 

@@ -19,10 +19,10 @@
 #include <sys/stat.h>
 #include <algorithm>
 
-Conf::Conf(): errors(0) {
+Conf::Conf(): errors(0),distribution(Uniform) {
 }
 
-Conf::Conf(const std::string &path): errors(0) {
+Conf::Conf(const std::string &path): errors(0),distribution(Uniform) {
   readconf(path);
 }
 
@@ -49,9 +49,16 @@ void Conf::readconf(const std::string &path) {
 }
 
 void Conf::readfile(const std::string &path) {
+  enum Section {
+    None,
+    Patterns,
+    Category,
+    Config,
+  };
   Stream s(path, "r");
   std::string line;
   std::vector<std::string> *target = NULL;
+  Section section = None;
   int lineno = 0;
   bool reported_missing_section = false;
   while(s.readline(line)) {
@@ -104,23 +111,60 @@ void Conf::readfile(const std::string &path) {
                 path.c_str(), lineno, pos);
         ++errors;
       }
-      if(type == "patterns")
+      if(type == "patterns") {
+        section = Patterns;
         target = &patterns;
-      else if(type == "category")
+      } else if(type == "category") {
+        section = Category;
         target = &categories[name];
-      else {
+      } else if(type == "config") {
+        section = Config;
+      } else {
         fprintf(stderr, "%s:%d: invalid section type '%s'\n",
                 path.c_str(), lineno, type.c_str());
         ++errors;
       }
     } else {
-      if(target)
+      switch(section) {
+      case Patterns:
+      case Category:
         target->push_back(line);
-      else if(!reported_missing_section) {
-        reported_missing_section = true;
-        fprintf(stderr, "%s:%d: missing section declaration\n",
-                path.c_str(), lineno);
-        ++errors;
+        break;
+      case Config: {
+        size_t e = line.find('=');
+        if(e == std::string::npos) {
+          fprintf(stderr, "%s:%d: invalid configuration setting\n",
+                  path.c_str(), lineno);
+          ++errors;
+          break;
+        }
+        const std::string name(line, 0, e);
+        const std::string value(line, e + 1);
+        if(name == "distribution") {
+          if(value == "uniform")
+            distribution = Uniform;
+          else if(value == "twolevel")
+            distribution = TwoLevel;
+          else {
+            fprintf(stderr, "%s:%d: invalid distribution\n",
+                    path.c_str(), lineno);
+            ++errors;
+          }
+        } else {
+          fprintf(stderr, "%s:%d: unrecognized configuration setting\n",
+                  path.c_str(), lineno);
+          ++errors;
+        }
+      }
+        break;
+      case None:
+        if(!reported_missing_section) {
+          reported_missing_section = true;
+          fprintf(stderr, "%s:%d: missing section declaration\n",
+                  path.c_str(), lineno);
+          ++errors;
+        }
+        break;
       }
     }
   }
