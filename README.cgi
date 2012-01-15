@@ -30,3 +30,11 @@ following substitutions are defined:
   ${package}      The name of the package, i.e. 'patternize'.
   ${version}      The version of the packacge.
   ${uri}          The URL of this page.
+
+By default the CGI will infer the locale (and in particular,
+therefore, the encoding of both input files and the generated web
+page) from the environment.  To override this, create a file called
+'locale' in the search path giving the locale name to use, for
+example:
+
+  echo $LANG > /etc/patternize/cgi/locale

@@ -23,7 +23,8 @@
 #include <unistd.h>
 #include <langinfo.h>
 
-static std::string locate(const std::string &name);
+static std::string locate(const std::string &name,
+                          bool required = true);
 static std::string myself();
 
 static const char *const dirs[] = {
@@ -34,7 +35,11 @@ static const char *const dirs[] = {
 
 int main() {
   try {
-    if(setlocale(LC_CTYPE, "") < 0)
+    std::string lf = locate("locale", false);
+    std::string l;
+    if(lf.size())
+      Stream(lf, "r").readline(l);
+    if(setlocale(LC_CTYPE, l.c_str()) < 0)
       throw std::runtime_error(std::string("setlocale: ") + strerror(errno));
     struct timeval tv;
     if(gettimeofday(&tv, NULL) < 0)
@@ -81,14 +86,18 @@ int main() {
   }
   return 0;
 }
-
-static std::string locate(const std::string &name) {
+  
+static std::string locate(const std::string &name,
+                          bool required) {
   for(size_t i = 0; dirs[i]; ++i) {
     std::string path = std::string(dirs[i]) + "/" + name;
     if(access(path.c_str(), F_OK) == 0)
       return path;
   }
-  throw std::runtime_error(name + " not found in any search directory");
+  if(required)
+    throw std::runtime_error(name + " not found in any search directory");
+  else
+    return "";
 }
 
 static std::string myself() {
