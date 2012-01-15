@@ -76,6 +76,7 @@ int main() {
     else
       h.set("uri", myself() + "?" + config);
     s.printf("Content-Type: text/html; charset=%s\n"
+             "Cache-Control: no-cache\n"
              "\n",
              nl_langinfo(CODESET));
     h.parse(t);
