@@ -2,19 +2,20 @@ Source: patternize
 Maintainer: Richard Kettlewell <rjk@terraraq.org.uk>
 Section: utils
 Priority: extra
-Standards-Version: 3.9.1.0
+Standards-Version: 3.9.2.0
 
 Package: patternize
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: Generate random strings from a collection of patterns
- Picks random strings uniformly from a set of patterns and
- substitutions given in a configuration file.
+ Picks random strings from a set of patterns and substitutions given
+ in a configuration file.
 
 Package: patternize-cgi
 Architecture: any
 Depends: apache2 | httpd-cgi,${shlibs:Depends}
+Recommends: patternize
 Description: CGI to generate random strings from a collection of patterns
- This is a web toy, running as a CGI, which picks random strings
- uniformly from a set of patterns and substitutions given in a
- configuration file, and displays them using a simple template.
+ This is a web toy, running as a CGI, which picks random strings from
+ a set of patterns and substitutions given in a configuration file,
+ and displays them using a simple template.
