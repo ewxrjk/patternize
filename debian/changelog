@@ -1,6 +1,5 @@
-patternize (0.0.DEV) unstable; urgency=low
+patternize (0.1) unstable; urgency=low
 
-  * This is the development branch.
+  * Release 0.1
 
- -- Richard Kettlewell <rjk@greenend.org.uk>  Sat, 14 Jan 2012 15:49:03 +0000
-
+ -- Richard Kettlewell <rjk@greenend.org.uk>  Fri, 20 Jan 2012 20:48:41 +0000
