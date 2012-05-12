@@ -39,7 +39,7 @@ int main() {
     std::string l;
     if(lf.size())
       Stream(lf, "r").readline(l);
-    if(setlocale(LC_CTYPE, l.c_str()) < 0)
+    if(!setlocale(LC_CTYPE, l.c_str()))
       throw std::runtime_error(std::string("setlocale: ") + strerror(errno));
     struct timeval tv;
     if(gettimeofday(&tv, NULL) < 0)
