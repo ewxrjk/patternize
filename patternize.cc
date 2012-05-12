@@ -20,6 +20,7 @@
 #include <getopt.h>
 #include <cstdlib>
 #include <sys/time.h>
+#include <clocale>
 
 static const struct option options[] = {
   { "help", no_argument, 0, 'h' },
@@ -34,7 +35,7 @@ int main(int argc, char **argv) {
   int count = 1;
 
   try {
-    if(setlocale(LC_CTYPE, "") < 0)
+    if(!setlocale(LC_CTYPE, ""))
       throw std::runtime_error(std::string("setlocale: ") + strerror(errno));
     while((n = getopt_long(argc, argv, "+hVn:", options, 0)) >= 0) {
       switch(n) {
