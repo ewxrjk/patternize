@@ -1,3 +1,10 @@
+patternize (0.2) unstable; urgency=low
+
+  * Fix calls to setlocale().
+  * An extra pattern entry.
+
+ -- Richard Kettlewell <rjk@greenend.org.uk>  Fri, 25 Oct 2013 17:46:50 +0100
+
 patternize (0.1) unstable; urgency=low
 
   * Release 0.1
