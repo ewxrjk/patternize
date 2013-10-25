@@ -1,4 +1,4 @@
-# patternize © 2011 Richard Kettlewell
+# patternize © 2011,13 Richard Kettlewell
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 AC_PREREQ([2.61])
 AC_INIT([patternize], [0.1], [rjk@greenend.org.uk])
 AC_CONFIG_AUX_DIR([config.aux])
-AM_INIT_AUTOMAKE([1.10])
+AM_INIT_AUTOMAKE([foreign])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES])
 AC_CONFIG_SRCDIR([patternize.cc])
 AM_CONFIG_HEADER([config.h])
