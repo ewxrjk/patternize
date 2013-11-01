@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # patternize © 2011,13 Richard Kettlewell
 #
