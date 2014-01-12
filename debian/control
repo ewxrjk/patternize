@@ -10,6 +10,9 @@ Depends: ${shlibs:Depends}
 Description: Generate random strings from a collection of patterns
  Picks random strings from a set of patterns and substitutions given
  in a configuration file.
+ .
+ This is the command-line version of the program.  Use the package
+ patternize-cgi for the web version.
 
 Package: patternize-cgi
 Architecture: any
