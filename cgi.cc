@@ -1,4 +1,4 @@
-// patternize © 2011 Richard Kettlewell
+// patternize © 2011, 2014 Richard Kettlewell
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #include "IO.hh"
 #include "patternize.hh"
 #include <cstdlib>
+#include <clocale>
 #include <sys/time.h>
 #include <unistd.h>
 #include <langinfo.h>
