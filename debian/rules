@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-# patternize © 2011 Richard Kettlewell
+# patternize © 2011, 2015 Richard Kettlewell
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -74,8 +74,8 @@ pkg-patternize: build
 		debian/patternize/usr/share/doc/patternize/changelog
 	$(MAKE) installdirs install DESTDIR=$(shell pwd)/debian/patternize
 	strip --remove-section=.comment debian/patternize/usr/bin/patternize
-	gzip -9f debian/patternize/usr/share/doc/patternize/changelog*
-	gzip -9f debian/patternize/usr/share/man/man*/*
+	gzip -9nf debian/patternize/usr/share/doc/patternize/changelog*
+	gzip -9nf debian/patternize/usr/share/man/man*/*
 	dpkg-shlibdeps -Tdebian/substvars.patternize \
 		debian/patternize/usr/bin/*
 	cd debian/patternize && \
@@ -100,7 +100,7 @@ pkg-patternize-cgi: build
 		debian/patternize-cgi/usr/share/doc/patternize-cgi/README.cgi
 	$(INSTALL_PROGRAM) patternize.cgi debian/patternize-cgi/usr/lib/cgi-bin/patternize
 	strip --remove-section=.comment debian/patternize-cgi/usr/lib/cgi-bin/*
-	gzip -9f debian/patternize-cgi/usr/share/doc/patternize-cgi/changelog*
+	gzip -9nf debian/patternize-cgi/usr/share/doc/patternize-cgi/changelog*
 	dpkg-shlibdeps -Tdebian/substvars.patternize-cgi \
 		debian/patternize-cgi/usr/lib/cgi-bin/*
 	cd debian/patternize-cgi && \
