@@ -27,7 +27,7 @@ AC_SET_MAKE
 AC_C_BIGENDIAN
 AC_DEFINE([_GNU_SOURCE], [1], [use GNU extensions])
 if test "x$GXX" = xyes; then
-  CXX="$CXX -Wall -W -Werror -Wpointer-arith -Wwrite-strings"
+  CXXFLAGS="$CXXFLAGS -Wall -W -Werror -Wpointer-arith -Wwrite-strings"
 fi
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
