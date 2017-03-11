@@ -1,0 +1,11 @@
+dist: trusty
+language: cpp
+compiler:
+- clang
+- gcc
+
+script:
+- ./autogen.sh
+- ./configure
+- make
+- VERBOSE=true make check
