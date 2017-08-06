@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
   return 0;
 }
 
-static void help() {
+[[noreturn]] static void help() {
   printf("Usage:\n"
          "  patternize [OPTIONS] PATH\n"
          "Options:\n"
@@ -78,7 +78,7 @@ static void help() {
   exit(0);
 }
 
-static void version() {
+[[noreturn]] static void version() {
   puts(VERSION);
   exit(0);
 }
