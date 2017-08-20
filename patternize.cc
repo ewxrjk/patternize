@@ -28,7 +28,7 @@ static const struct option options[] = {
   { "number", required_argument, 0, 'n' },
 };
 
-static void help(), version();
+[[noreturn]] static void help(), version();
 
 int main(int argc, char **argv) {
   int n;
