@@ -1,7 +1,7 @@
 Source: patternize
 Maintainer: Richard Kettlewell <rjk@terraraq.org.uk>
 Section: utils
-Priority: extra
+Priority: optional
 Standards-Version: 3.9.2.0
 
 Package: patternize
