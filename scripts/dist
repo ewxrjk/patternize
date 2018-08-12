@@ -8,7 +8,14 @@ build() {
 
     tar xf ${archive}
     cd ${dir}
-    schroot -pc${chroot} fakeroot debian/rules build binary
+    case "$chroot" in
+        "" )
+            fakeroot debian/rules build binary
+            ;;
+        * )
+            schroot -pc${chroot} fakeroot debian/rules build binary
+            ;;
+    esac
     cd ..
     mv ${package}_${version}_${arch}.deb products/.
     mv patternize-cgi_${version}_${arch}.deb products/.
@@ -27,6 +34,6 @@ mkdir products
 cp ${archive} products/.
 man -Tutf8 -l patternize.1 | texttohtml -iT 'patternize(1)' > products/patternize.1.html
 
-build i386 lenny32
-build amd64 lenny64
+build i386 stretch32
+build amd64 ""
 ls -l products
